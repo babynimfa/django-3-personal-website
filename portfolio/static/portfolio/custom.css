@@ -1,0 +1,45 @@
+.navbar-nav .nav-link {
+    color: white !important;
+
+}
+
+.navbar-title {
+  color: white;
+}
+
+.h4-blog-desc {
+  color: white;
+}
+
+.h2-blog-title {
+  color: red;
+}
+
+.date-style {
+  color: #8585ad;
+}
+
+.navbar-nav .nav-link:hover {
+    color: red !important;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+    background-color: black;
+    color: white;
+}
+
+
+
+#blogtitle {
+    font-size: 6rem;
+}
+
+@media (min-width: 992px) {
+    #hometext {
+        font-size: 4rem;
+    }
+    #blogdetailtitle {
+        font-size: 5rem;
+    }
+}
