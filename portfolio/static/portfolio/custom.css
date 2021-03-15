@@ -1,6 +1,5 @@
 .navbar-nav .nav-link {
     color: white !important;
-
 }
 
 .navbar-title {
@@ -15,12 +14,24 @@
   color: red;
 }
 
-.date-style {
+.date-stylez {
   color: #8585ad;
 }
 
 .navbar-nav .nav-link:hover {
     color: red !important;
+}
+
+.user-logged-in {
+  position: absolute;
+    top: 70%;
+    right: 79%;
+    transform: translate(50%,-50%);
+    text-transform: uppercase;
+    font-family: Verdana;
+    font-size: 1em;
+    font-weight: 700;
+    color: yellow;
 }
 
 body {
