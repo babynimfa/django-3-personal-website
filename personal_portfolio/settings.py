@@ -24,9 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'h_%q47v0w0i8!_h!^u9)obm)vaa^b+2yuzp-p%recte+jf%7a^'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['eperf2019.pythonanywhere.com']
+ALLOWED_HOSTS = ['eperf2019.pythonanywhere.com]
 
 
 # Application definition
