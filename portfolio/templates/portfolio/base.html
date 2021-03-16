@@ -1,25 +1,23 @@
 {% load static %}
 
-{% if user.is_authenticated %}
+
 <html lang="en">
 <head>
-  <!-- Required meta tags -->
+  <!-- Bootstrap CSS -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-  <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
   <link rel="stylesheet" href="{% static "portfolio/custom.css" %}">
-
   <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
-
   <link rel="icon" type="image/png" href="{% static "portfolio/Logo.png" %}">
   <title>Elements Performance</title>
 </head>
 
+<!-- If user is logged in -->
+{% if request.user.is_authenticated %}
+
 <body>
-  <nav id="topNav" class="navbar navbar-expand-md navbar-light bg-danger">
+  <nav id="topNav" class="navbar navbar-expand-md navbar-light bg-dark">
     <div class="container-fluid">
       <a class="navbar-brand" href="{% url 'home' %}">
         <img src="{% static "portfolio/Logo.png" %}" width="30" height="30" class="d-inline-block align-top" alt="Nick's Logo">
@@ -41,10 +39,11 @@
             <a class="nav-link" href="https://www.facebook.com/elementzperformance" target="_blank">Facebook</a>
           </li>
           <li>
-            <a role="button" href="{% url 'blog:all_blogs' %}" class="btn btn-primary">Blog</a>
+            <a role="button" href="{% url 'blog:all_blogs' %}" class="btn btn-primary">FAQ</a>
           </li>
+          &nbsp
           <li>
-            <form action="{% url 'logoutuser' %}" method="POST">
+            <form action="{% url 'logoutuser' %}" id="base_form" method="POST" >
                 {% csrf_token %}
             <button type="submit" class="btn btn-primary">Logout<br>
             </button>
@@ -54,37 +53,16 @@
       </div>
     </div>
   </nav>
-
-
   <div class="container">
   </div>
 
 {% block content2 %}{% endblock %}
 
+<!-- If user is logged out -->
 {% else %}
 
-<html lang="en">
-
-<head>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
-  <link rel="stylesheet" href="{% static "portfolio/custom.css" %}">
-
-  <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
-
-  <link rel="icon" type="image/png" href="{% static "portfolio/Logo.png" %}">
-
-  <title>Elements Performance</title>
-</head>
-
 <body>
-
-  <nav id="topNav" class="navbar navbar-expand-md navbar-light bg-danger">
+  <nav id="topNav" class="navbar navbar-expand-md navbar-light bg-dark">
     <div class="container-fluid">
       <a class="navbar-brand" href="{% url 'home' %}">
         <img src="{% static "portfolio/Logo.png" %}" width="30" height="30" class="d-inline-block align-top" alt="Nick's Logo">
@@ -121,16 +99,8 @@
 
   <div class="container">
   </div>
+
 {% block content %}{% endblock %}
-
 {% endif %}
-
-
-  <!-- Optional JavaScript -->
-  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-</body>
 
 </html>
