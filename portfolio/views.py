@@ -18,7 +18,7 @@ def signupuser(request):
                 user = User.objects.create_user(request.POST['username'], password=request.POST['password1'])
                 user.save()
                 login(request, user)
-                return redirect('currenthome')
+                return redirect('home')
             except IntegrityError:
                 return render(request, 'portfolio/signupuser.html', {'form':UserCreationForm(), 'error':'Username has already been taken'})
         else:
@@ -44,7 +44,3 @@ def logoutuser(request):
     if request.method == 'POST':
         logout(request)
         return redirect('home')
-
-
-def test(request):
-    return render(request, 'portfolio/test.html')

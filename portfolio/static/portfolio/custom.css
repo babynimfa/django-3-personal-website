@@ -29,9 +29,9 @@
 }
 
 .user-logged-in {
-  position: absolute;
+    position: absolute;
     top: 70%;
-    right: 79%;
+    right: 50%;
     transform: translate(50%,-50%);
     text-transform: uppercase;
     font-family: Verdana;
