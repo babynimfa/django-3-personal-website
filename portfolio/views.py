@@ -4,29 +4,18 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.db import IntegrityError
 from django.contrib.auth import login, logout, authenticate
+from django.forms import EmailField
+from django.utils.translation import ugettext_lazy as _
+from .forms import CreateUserForm
+
 
 def home(request):
     projects = Project.objects.all()
     return render(request, 'portfolio/home.html', {'projects':projects})
 
-def signupuser(request):
-    if request.method == 'GET':
-        return render(request, 'portfolio/signupuser.html', {'form':UserCreationForm()})
-    else:
-        if request.POST['password1'] == request.POST['password2']:
-            try:
-                user = User.objects.create_user(request.POST['username'], password=request.POST['password1'])
-                user.save()
-                login(request, user)
-                return redirect('home')
-            except IntegrityError:
-                return render(request, 'portfolio/signupuser.html', {'form':UserCreationForm(), 'error':'Username has already been taken'})
-        else:
-            return render(request, 'portfolio/signupuser.html', {'form':UserCreationForm(), 'error':'Passwords did not match'})
 
 def currenthome(request):
     return render(request, 'portfolio/currenthome.html')
-
 
 
 def loginuser(request):
@@ -44,3 +33,28 @@ def logoutuser(request):
     if request.method == 'POST':
         logout(request)
         return redirect('home')
+
+
+
+
+#For SignUp Code
+
+def signupuser(request):
+    form = CreateUserForm()
+    context = {'form':form}
+
+    if request.method == 'GET':
+        return render(request, 'portfolio/signupuser.html', context)
+    else:
+        if request.POST['password1'] == request.POST['password2']:
+            try:
+                user = User.objects.create_user(request.POST['username'], email =request.POST['email'], password=request.POST['password1'])
+                user.save()
+                login(request, user)
+                return redirect('home')
+            except IntegrityError:
+                return render(request, 'portfolio/signupuser.html', {'form':CreateUserForm(), 'error':'- Username has already been taken'})
+        else:
+            return render(request, 'portfolio/signupuser.html', {'form':CreateUserForm(), 'error':'- Passwords did not match'})
+
+#End of SignUp Codes

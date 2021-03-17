@@ -15,7 +15,7 @@
     <a href="{% url 'blog:detail' blog.id %}">
       <h2 class="h2-blog-title">{{ blog.title }}</h2>
     </a>
-    <h5 class="date-style">{{ blog.date|date:'M d Y'|upper }}</h5>
+    <h5 class="">{{ blog.date|date:'M d Y'|upper }}</h5>
     <h4 class="h4-blog-desc">{{ blog.description|striptags|truncatechars:100 }}</h4>
   </div>
 </div>
