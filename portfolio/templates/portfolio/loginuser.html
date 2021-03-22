@@ -6,68 +6,68 @@
 
 
 <!DOCTYPE html>
-<html id="loginbody">
+<html>
 <head>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
-	<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-	<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<link rel="stylesheet" href="{% static "portfolio/custom.css" %}">
+	<link href="//fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i" rel="stylesheet">
 </head>
 
 <!--CODING STARTS HERE-->
-
-<body id="loginbody">
-	<div class="container h-100">
-		<div class="d-flex justify-content-center h-100">
-			<div class="user_card">
-				<div class="d-flex justify-content-center">
-					<div class="brand_logo_container">
-						<img src="{% static "portfolio/CircleLogo.png" %}" class="brand_logo" alt="Logo">
-					</div>
+<body>
+	<div class="main-w3layouts wrapper">
+		<div class="main-agileinfo">
+			<div class="agileits-top">
+				<div class="input-group mb-3 justify-content-center">
+				<img src="{% static "portfolio/CircleLogo.png" %}" class="brand_logo" alt="Logo">
 				</div>
-				<div class="d-flex justify-content-center form_container">
-					<form method="POST">
-            {% csrf_token %}
-						<div class="input-group mb-3">
+				<form method="POST">
+					{% csrf_token %}
+					<div class="input-group mb-3 justify-content-center">
+						<div class="input-group-append">
+							<span class="input-group-text"><i class="fas fa-user"></i></span>
+							<input class="text" type="text" name="username" placeholder="Username" required="">
+						</div>
+						</div>
+
+						<div class="input-group mb-3 justify-content-center">
 							<div class="input-group-append">
 								<span class="input-group-text"><i class="fas fa-user"></i></span>
+								<input class="text" type="password" name="password" placeholder="Password" required="">
 							</div>
-							<input type="text" name="username" class="form-control input_user" value="" placeholder="username">
-						</div>
-						<div class="input-group mb-2">
-							<div class="input-group-append">
-								<span class="input-group-text"><i class="fas fa-key"></i></span>
 							</div>
-							<input type="password" name="password" class="form-control input_pass" value="" placeholder="password">
-						</div>
-						<div class="form-group">
-							<div class="custom-control custom-checkbox">
+					<text class="errormessage">{{ error }}</text><br><br>
+					<div class="wthree-text">
+					<div class="input-group mb-2 justify-content-center">
 								<input type="checkbox" class="custom-control-input" id="customControlInline">
 								<label class="custom-control-label" for="customControlInline">Remember me</label><br><br>
 								<text class="errormessage">{{error}}</text>
-							</div>
 						</div>
-							<div class="d-flex justify-content-center mt-3 login_container">
-				 	       <input type="submit" value="SUBMIT">
-				   </div>
-					</form>
-				</div>
-				<div class="">
-					<div class="d-flex justify-content-center links">
-						<span>Don't have an account? <a href="{% url 'signupuser' %}" class="ml-2">Sign Up</a></span>
+						<div class="clear"> </div>
 					</div>
-					<div class="d-flex justify-content-center links">
-						<a href="#">Forgot your password?</a>
-					</div>
-				</div>
+					<input type="submit" value="LOGIN">
+				</form>
+				<p>Don't have an account yet? <a href="{% url 'signupuser' %}"> Register Now!</a></p>
 			</div>
 		</div>
+
+		<ul class="colorlib-bubbles">
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
 	</div>
-
-
 
 </body>
 </html>
