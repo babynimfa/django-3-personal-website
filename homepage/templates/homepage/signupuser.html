@@ -1,0 +1,43 @@
+{% extends 'homepage/base.html' %}
+{% load static %}
+{% block content %}
+
+
+	<div class="main-w3layouts wrapper">
+
+		<div class="main-agileinfo">
+			<div class="agileits-top">
+				<form method="POST">
+          {% csrf_token %}
+					<input class="text" type="text" name="username" placeholder="Username" required="">
+					<input class="text email" type="email" name="email" placeholder="Email" required="">
+					<input class="text" type="password" name="password1" placeholder="Password" required="">
+					<input class="text w3lpass" type="password" name="password2" placeholder="Confirm Password" required="">
+          <text class="errormessage">{{ error }}</text><br><br>
+					<div class="wthree-text">
+					<center>	<label class="anim">
+							<input type="checkbox" class="checkbox" required="">
+						 <span>I agree to the terms and conditions</span>
+						</label></center>
+						<div class="clear"> </div>
+					</div>
+					<input type="submit" value="SIGNUP">
+				</form>
+				<p>Have an account already? <a href="{% url 'loginuser' %}"> Login Now!</a></p>
+			</div>
+		</div>
+		<ul class="colorlib-bubbles">
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+	</div>
+
+{% endblock %}

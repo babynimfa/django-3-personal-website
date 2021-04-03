@@ -1,0 +1,148 @@
+{% load static %}
+
+
+<html lang="en">
+<head>
+  <link rel="icon" type="image/png" href="{% static "homepage/Logo.png" %}">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/custom.css' %}">
+  <link href="//fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i" rel="stylesheet">
+  <!-- Insert JS here in Header -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+  <!-- end of JS code in Header -->
+
+<title>Elements Performance</title>
+</head>
+
+<body>
+<!-- If user is logged in -->
+{% if request.user.is_authenticated %}
+
+  <nav id="topNav" class="navbar navbar-expand-md navbar-light bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/">
+        <img src="{% static "homepage/Logo.png" %}" width="30" height="30" class="d-inline-block align-top" alt="eperfs">
+        <span class= "navbar-title">Elements Performance</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse text-center" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+        <ul class="navbar-nav me-auto mb-2 mb-md-0">
+        <ul class="navbar-nav ml-auto">
+
+          <li class="nav-item">
+            <text class="user-logged-in">Hello, {{ user.username }}! </text>
+          </li>
+
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle btn-warning" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+              Store
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <li>
+                 <a class="dropdown-item" href="{% url "store:product_all" %}">All</a>
+             </li>
+             {% for c in categories %}
+             <li {% if category.slug == c.slug %}class="selected" {% endif %}>
+                 <a class="dropdown-item" href="{{ c.get_absolute_url }}">{{ c.name|title }}</a>
+             </li>
+             {% endfor %}
+            </ul>
+          </div>
+          <li class="nav-item">
+            <a class="nav-link" target="_blank" href="{% static "homepage/catalog.pdf" %}">Radiator Catalog</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" target="_blank" href="https://api.whatsapp.com/send?phone=639456280495&text=" target="_blank">Whatsapp</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" target="_blank" href="https://www.facebook.com/elementzperformance" target="_blank">Facebook</a>
+          </li>
+          <li>
+            <a role="button" href="{% url 'blog:all_blogs' %}" class="btn btn-primary">FAQ</a>
+          </li>
+          &nbsp
+          <li>
+            <form action="{% url 'logoutuser' %}" id="base_form" method="POST" >
+                {% csrf_token %}
+            <button type="submit" class="btn btn-primary">Logout<br>
+            </button>
+            </form>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="container">
+    {% block content2 %}{% endblock %}
+  </div>
+
+
+<!-- If user is logged out -->
+{% else %}
+
+  <nav id="topNav" class="navbar navbar-expand-md navbar-light bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="{% url 'home' %}">
+        <img src="{% static "homepage/Logo.png" %}" width="30" height="30" class="d-inline-block align-top" alt="eperfs">
+        <span class= "navbar-title">Elements Performance</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse text-center" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle btn-warning" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+              Store
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <li>
+                 <a class="dropdown-item" href="{% url "store:product_all" %}">All</a>
+             </li>
+             {% for c in categories %}
+             <li {% if category.slug == c.slug %}class="selected" {% endif %}>
+                 <a class="dropdown-item" href="{{ c.get_absolute_url }}">{{ c.name|title }}</a>
+             </li>
+             {% endfor %}
+            </ul>
+          </div>
+          <li class="nav-item">
+            <a class="nav-link" target="_blank" href="{% static "homepage/catalog.pdf" %}">Radiator Catalog</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://api.whatsapp.com/send?phone=639456280495&text=" target="_blank">Whatsapp</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" target="_blank" href="https://www.facebook.com/elementzperformance" target="_blank">Facebook</a>
+          </li>
+          <li>
+            <a role="button" target="_blank" href="{% url 'blog:all_blogs' %}" class="btn btn-primary">FAQ</a>
+          </li>
+          &nbsp
+          <li>
+            <a role="button" href="{% url 'signupuser' %}" class="btn btn-primary">Register</a>
+          </li>
+          &nbsp
+          <li>
+            <a role="button" href="{% url 'loginuser' %}" class="btn btn-primary">Sign-In</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="container">
+    {% block content %}{% endblock %}
+  </div>
+
+
+{% endif %}
+</body>
+</html>

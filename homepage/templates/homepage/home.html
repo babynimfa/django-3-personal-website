@@ -1,0 +1,39 @@
+{% extends "homepage/base.html" %}
+{% load static %}
+{% block content2 %}
+{% block content %}
+
+<div class="row justify-content-center my-3">
+  <div class="col-12">
+    <img src="{% static 'homepage/FrontLogo.jpg' %}" class="img-fluid" alt="eperfs">
+  </div>
+</div>
+
+<div class="row justify-content-center mb-3">
+  <div class="col-md-9 text-center">
+    <h1 class="font-weight-bold">Full Aluminum Performance Radiator for your precious sports cars!</h1>
+  </div>
+</div>
+
+<hr>
+<div class="row">
+  {% for project in projects %}
+  <div class="col-lg-4 col-md-6">
+
+    {% if project.url %}
+    <a href="{{ project.url }}">
+      <img src="{{ project.image.url }}" class="img-fluid mb-2">
+    </a>
+    {% else %}
+
+    <img src="{{ project.image.url }}" class="img-fluid mb-2">
+    {% endif %}
+    <h3>{{ project.title }}</h3>
+    <p>{{ project.description }}</p>
+
+  </div>
+  {% endfor %}
+</div>
+<br>
+{% endblock %}
+{% endblock %}

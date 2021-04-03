@@ -1,0 +1,60 @@
+{% extends 'homepage/base.html' %}
+{% load static %}
+{% block content %}
+
+
+
+	<div class="main-w3layouts wrapper">
+		<div class="main-agileinfo">
+			<div class="agileits-top">
+				<div class="input-group mb-3 justify-content-center">
+				<img src="{% static "homepage/CircleLogo.png" %}" class="brand_logo" alt="Logo">
+				</div>
+				<form method="POST">
+					{% csrf_token %}
+					<div class="input-group mb-3 justify-content-center">
+						<div class="input-group-append">
+							<span class="input-group-text"><i class="fas fa-user"></i></span>
+							<input class="text" type="text" name="username" placeholder="Username" required="" value="eperf2019">
+						</div>
+						</div>
+
+						<div class="input-group mb-3 justify-content-center">
+							<div class="input-group-append">
+								<span class="input-group-text"><i class="fas fa-user"></i></span>
+								<input class="text" type="password" name="password" placeholder="Password" required="" value="P@$$w0rd1">
+							</div>
+							</div>
+					<text class="errormessage">{{ error }}</text><br><br>
+					<div class="wthree-text">
+					<div class="input-group mb-2 justify-content-center">
+						<center><label class="anim">
+										<input type="checkbox" class="custom-control-input" id="customControlInline">
+										<input type="checkbox" for="customControlInline" class="checkbox" required="" checked>
+									 <span>Remember me</span>
+									</label></center>
+						</div>
+						<div class="clear"> </div>
+					</div>
+					<input type="submit" value="LOGIN">
+				</form>
+				<p>Don't have an account yet? <a href="{% url 'signupuser' %}"> Register Now!</a></p>
+			</div>
+		</div>
+
+		<ul class="colorlib-bubbles">
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+	</div>
+
+
+{% endblock %}
