@@ -4,37 +4,39 @@
 {% block content2 %}
 
 <div class="container">
-    <main class="pt-5">
-        <div class="row g-3">
-            <div class="col-md-5 col-lg-5 order-md-first bg-transparent">
-            <img class="img-fluid mx-auto d-block" width="100%" alt="Responsive image" src="{{ product.image.url }}">
+  <main class="pt-5">
+    <div class="row g-3">
+      <div class="col-md-5 col-lg-5 order-md-first bg-transparent">
+        <img class="img-fluid mx-auto d-block" width="100%" alt="Responsive image" src="{{ product.image.url }}">
+      </div>
+      <div class="col-md-7 col-lg-7 ps-md-3 ps-lg-5">
+        <h1 class="storedetailtitle">{{ product.make }} {{ product.title }}</h1>
+        <h3 class="storedetailmodel">{{ product.model }}</h3>
+        <center>
+          <h3 class="storedetailcode">Code: <span>{{ product.code }}</span></p>
+        </center>
+        <p class="storedetailparagraph">{{ product.description|slice:":450" }}...</p>
+        <div class="border">
+          <div class="col border-bottom">
+            <div class="row p-3">
+              <div class="col-6">Hardback</div>
+              <div class="col-6 text-end"><span class="h4 fw-bold">₱{{ product.price }}</span></div>
             </div>
-            <div class="col-md-7 col-lg-7 ps-md-3 ps-lg-5">
-                <h1 class="storedetailtitle">{{ product.make }} {{ product.title }}</h1>
-                <h3 class="storedetailmodel">{{ product.model }}</h3>
-                <center><h3 class="storedetailcode">Code: <span>{{ product.code }}</span></p></center>
-                <p class="storedetailparagraph">{{ product.description|slice:":450" }}...</p>
-                <div class="border">
-                    <div class="col border-bottom">
-                        <div class="row p-3">
-                            <div class="col-6">Hardback</div>
-                            <div class="col-6 text-end"><span class="h4 fw-bold">₱{{ product.price }}</span></div>
-                        </div>
                     </div>
                     <div class="col">
                         <div class="row p-3">
                             <div class="col-6">
-                                <label for="select">Quantity</label>
+                                <label for="select">Qty</label>
                                 <select id="select">
-                                    <option value="">1</option>
-                                    <option value="">2</option>
-                                    <option value="">3</option>
-                                    <option value="">4</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
                                 </select>
 
                             </div>
-                            <div class="col-6 text-end"><button type="button" class="btn btn-secondary btn-sm">Add to
-                                    basket</button></div>
+                            <div class="col-6 text-end">
+<button type="button" id="add-button" value="{{product.id}}" class="btn btn-secondary btn-sm">Add to basket</button></div>
                         </div>
                     </div>
                 </div>
@@ -43,5 +45,25 @@
     </main>
 
 </div>
+
+<script>
+    $(document).on('click', '#add-button', function (e) {
+        e.preventDefault();
+        $.ajax({
+            type: 'POST',
+            url: '{% url "basket:basket_add" %}',
+            data: {
+                productid: $('#add-button').val(),
+                productqty: $('#select option:selected').text(),
+                csrfmiddlewaretoken: "{{csrf_token}}",
+                action: 'post'
+            },
+            success: function (json) {
+               document.getElementById("basket-qty").innerHTML = json.qty
+            },
+            error: function (xhr, errmsg, err) {}
+        });
+    })
+</script>
 {% endblock %}
 {% endblock %}
